@@ -15,7 +15,6 @@ const albumSchema = new mongoose.Schema({
     },
     artistId : {
         type : String,
-        required : true
     }
 });
 
