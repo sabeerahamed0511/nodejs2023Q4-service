@@ -3,19 +3,19 @@ const mongoose = require("mongoose");
 const trackSchema = new mongoose.Schema({
     _id : {
         type : String,
-        default : uuid.v4()
     },
     name : {
         type : String,
-        unique : true
+        unique : true,
+        required : true
     },
     artistId : {
         type : String,
-        default : null
+        required : true
     },
     albumId : {
         type : String,
-        default : null
+        required : true
     },
     duration : {
         type : Number,
