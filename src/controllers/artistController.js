@@ -3,8 +3,8 @@ const uuid = require("uuid");
 
 const getAllArtist = async (req, res) => {
     try {
-        let artist = await Artist.find();
-        res.status(200).json({ status: "Success", artist });
+        let artists = await Artist.find();
+        res.status(200).json({ status: "Success", artists });
     } catch (err) {
         res.status(400).json({ status: "Failure", message: err.message });
     }
