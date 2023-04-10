@@ -11,11 +11,9 @@ const trackSchema = new mongoose.Schema({
     },
     artistId : {
         type : String,
-        required : true
     },
     albumId : {
         type : String,
-        required : true
     },
     duration : {
         type : Number,
