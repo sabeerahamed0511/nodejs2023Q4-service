@@ -1,5 +1,6 @@
 const User = require("../models/userSchema");
 const bcrypt = require("bcrypt");
+const uuid = require("uuid");
 
 userController = {};
 
@@ -27,6 +28,7 @@ userController.newUser = async (req, res) => {
         let hashedPasssword = await bcrypt.hash(req.body.password, 10);
         let user = await new User({
             ...req.body,
+            _id : uuid.v4(),
             password: hashedPasssword
         });
         user = await user.save();

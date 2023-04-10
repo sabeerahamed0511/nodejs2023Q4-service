@@ -3,18 +3,19 @@ const mongoose = require("mongoose");
 const albumSchema = new mongoose.Schema({
     _id : {
         type : String,
-        default : uuid.v4()
     },
     name : {
         type : String,
-        unique : true
+        unique : true,
+        required : true
     },
     year : {
         type : Number,
+        required : true
     },
     artistId : {
         type : String,
-        default : null
+        required : true
     }
 });
 
