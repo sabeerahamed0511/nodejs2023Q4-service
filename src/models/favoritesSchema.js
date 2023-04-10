@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 const favoritesSchema = new mongoose.Schema({
+    _id : {
+        type : String
+    },
     artists : {
         type : [String],
     },
