@@ -17,7 +17,7 @@ userController.getSingleUser = async (req, res) => {
     try {
         let user = await User.findById(req.params.id);
         if (!user) return res.status(404).json({ status: "Failure", message: "User doesn't exists" });
-        res.status(200).json({ status: "Success", user });
+        res.status(200).json({ status: "Success", user : {...user, password : "Hidden for security purpose"} });
     } catch (err) {
         res.status(400).json({ status: "Failure", message: err.message });
     }

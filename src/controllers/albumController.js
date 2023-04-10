@@ -1,4 +1,6 @@
 const Album = require("../models/albumSchema");
+const Track = require("../models/trackSchema");
+const Favorite = require("../models/favoritesSchema");
 const uuid = require("uuid");
 
 const getAllAlbum = async (req, res) => {
@@ -48,6 +50,8 @@ const deleteAlbum = async (req, res) => {
     try {
         let album = await Album.findById(req.params.id);
         if (!album) return res.status(404).json({ status: "Failure", message: "Album doesn't exists" });
+        await Track.updateMany({albumId : req.params.id}, {albumId : null});
+        await Favorite.findByIdAndUpdate("favorites", {$pull : {albums : req.params.id}});
         await Album.findByIdAndDelete(req.params.id);
         res.status(204).json({ status: "Success", message: "Album deleted." });
 
