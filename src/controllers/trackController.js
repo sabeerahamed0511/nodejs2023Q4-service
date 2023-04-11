@@ -1,6 +1,7 @@
 const Track = require("../models/trackSchema");
 const Favorite = require("../models/favoritesSchema");
 const uuid = require("uuid");
+const { defaultId } = require("./favoritesController");
 
 const getAllTrack = async (req, res) => {
     try {
@@ -49,7 +50,7 @@ const deleteTrack = async (req, res) => {
     try {
         let track = await Track.findById(req.params.id);
         if (!track) return res.status(404).json({ status: "Failure", message: "Track doesn't exists" });
-        await Favorite.findByIdAndUpdate("favorites", {$pull : {tracks : req.params.id}});
+        await Favorite.findByIdAndUpdate(defaultId, {$pull : {tracks : req.params.id}});
         await Track.findByIdAndDelete(req.params.id);
         res.status(204).json({ status: "Success", message: "Track deleted." });
 
